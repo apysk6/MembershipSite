@@ -15,8 +15,8 @@ namespace Memberships.Extensions
                    {
                        Text = item.GetPropertyValue("Title"),
                        Value = item.GetPropertyValue("Id"),
-                       Selected = item.GetPropertyValue("Id").Equals(selectedValue.ToString());
-                   }
+                       Selected = item.GetPropertyValue("Id").Equals(selectedValue.ToString())
+                   };
         }
     }
 }
