@@ -93,5 +93,18 @@ namespace Memberships.Areas.Admin.Extensions
             };
             return model;
         }
+
+        public static async Task<bool> CanChange(this ProductItem productItem, ApplicationDbContext db )
+        {
+            var oldPI = await db.ProductItems.CountAsync(
+                pi => pi.ProductId.Equals(productItem.OldProductId) &&
+                pi.ItemId.Equals(productItem.OldItemId));
+
+            var newPI = await db.ProductItems.CountAsync(
+                pi => pi.ProductId.Equals(productItem.ProductId) &&
+                pi.ItemId.Equals(productItem.ItemId));
+
+            return oldPI.Equals(1) && newPI.Equals(0);
+        }
     }
 }
