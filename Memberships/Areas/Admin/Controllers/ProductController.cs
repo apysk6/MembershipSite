@@ -40,7 +40,8 @@ namespace Memberships.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product);
+            var model = await product.Convert(db);
+            return View(model);
         }
 
         // GET: Admin/Product/Create
@@ -119,7 +120,9 @@ namespace Memberships.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product);
+
+            var model = await product.Convert(db);
+            return View(model);
         }
 
         // POST: Admin/Product/Delete/5
