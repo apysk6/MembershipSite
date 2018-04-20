@@ -22,11 +22,14 @@ namespace Memberships.Entities
         [MaxLength(1024)]
         public string Url { get; set; }
         [MaxLength(1024)]
+        [DisplayName("Image URL")]
         public string ImageUrl { get; set; }
         [AllowHtml]
         public string HTML { get; set; }
         [DefaultValue(0)]
+        [DisplayName("Wait Days")]
         public int WaitDays { get; set; }
+        [DisplayName("HTML Code")]
         public string HTMLShort
         {
             get
@@ -35,12 +38,16 @@ namespace Memberships.Entities
                     ? HTML : HTML.Substring(0, 50);
             }
         }
-
+        [DisplayName("Product ID")]
         public int ProductId { get; set; }
+        [DisplayName("Item Type ID")]
         public int ItemTypeId { get; set; }
+        [DisplayName("Section ID")]
         public int SectionId { get; set; }
+        [DisplayName("Part ID")]
         public int PartId { get; set; }
-        public int IsFree { get; set; }
+        [DisplayName("Is Free")]
+        public bool IsFree { get; set; }
 
         [DisplayName("Item Type")]
         public ICollection<ItemType> ItemTypes { get; set; }

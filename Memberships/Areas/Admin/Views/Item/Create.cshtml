@@ -7,10 +7,10 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Item</h4>
         <hr />
@@ -26,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -50,7 +50,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HTML, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HTML, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.HTML, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.HTML, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -68,8 +68,8 @@
             @Html.LabelFor(model => model.ItemTypes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.ItemTypeId,
-               Model.ItemTypes.ToSelectListItem(Model.ItemTypeId),
-              new { @class = "form-control" })
+                    Model.ItemTypes.ToSelectListItem(Model.ItemTypeId),
+                   new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ItemTypeId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -78,8 +78,8 @@
             @Html.LabelFor(model => model.Sections, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.SectionId,
-            Model.Sections.ToSelectListItem(Model.SectionId),
-         new { @class = "form-control" })
+                 Model.Sections.ToSelectListItem(Model.SectionId),
+              new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SectionId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -88,8 +88,8 @@
             @Html.LabelFor(model => model.Parts, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.PartId,
-            Model.Parts.ToSelectListItem(Model.PartId),
-            new { @class = "form-control" })
+                 Model.Parts.ToSelectListItem(Model.PartId),
+                 new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PartId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -97,19 +97,21 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IsFree, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IsFree, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IsFree, "", new { @class = "text-danger" })
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsFree)
+                    @Html.ValidationMessageFor(model => model.IsFree, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        @Html.Partial("_BackToListButtonPartial")
+    </div>
