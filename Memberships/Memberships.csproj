@@ -200,8 +200,10 @@
     <Compile Include="Areas\Admin\Controllers\ProductTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\SectionController.cs" />
     <Compile Include="Areas\Admin\Controllers\SubscriptionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SubscriptionProductController.cs" />
     <Compile Include="Areas\Admin\Extensions\ConversionExtensions.cs" />
     <Compile Include="Areas\Admin\Models\EditButtonModel.cs" />
+    <Compile Include="Areas\Admin\Models\SubscriptionProductModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductItemModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductModel.cs" />
     <Compile Include="Areas\Admin\Models\SmallButtonModel.cs" />
@@ -356,6 +358,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\SubscriptionProduct\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
