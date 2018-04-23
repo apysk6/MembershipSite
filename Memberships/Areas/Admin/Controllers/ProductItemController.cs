@@ -25,18 +25,19 @@ namespace Memberships.Areas.Admin.Controllers
         }
 
         // GET: Admin/ProductItem/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int? itemId, int? productId)
         {
-            if (id == null)
+            if (itemId == null || productId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductItem productItem = await db.ProductItems.FindAsync(id);
+            ProductItem productItem = await GetProductItem(itemId, productId);
             if (productItem == null)
             {
                 return HttpNotFound();
             }
-            return View(productItem);
+            
+            return View(productItem.Convert(db));
         }
 
         // GET: Admin/ProductItem/Create
@@ -88,15 +89,19 @@ namespace Memberships.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ProductId,ItemId")] ProductItem productItem)
+        public async Task<ActionResult> Edit(
+            [Bind(Include = "ProductId,ItemId,OldProductId,OldItemId")]
+            ProductItem productItem)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(productItem).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                var canChange = await productItem.CanChange(db);
+                if (canChange == true)
+                    await productItem.Change(db);
+
                 return RedirectToAction("Index");
             }
-            return View(productItem);
+            return View(await productItem.Convert(db));
         }
 
         // GET: Admin/ProductItem/Delete/5
