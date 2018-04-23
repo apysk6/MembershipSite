@@ -125,5 +125,25 @@ namespace Memberships.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+
+        private async Task<SubscriptionProduct> GetSubscriptionProduct(int? subscriptionId, int? productId)
+        {
+            try
+            {
+                int subscId = 0;
+                int prdId = 0;
+
+                int.TryParse(subscriptionId.ToString(), out subscId);
+                int.TryParse(productId.ToString(), out prdId);
+                var subscriptionProduct = await db.SubscriptionProducts.FirstOrDefaultAsync(
+                    pi => pi.ProductId.Equals(prdId) && pi.SubscriptionId.Equals(subscId));
+
+                return subscriptionProduct;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }
