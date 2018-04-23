@@ -162,7 +162,7 @@ namespace Memberships.Areas.Admin.Extensions
                           {
                               SubscriptionId = pi.SubscriptionId,
                               ProductId = pi.ProductId,
-                              SubscriptionTitle = db.Items.FirstOrDefault(
+                              SubscriptionTitle = db.Subscriptions.FirstOrDefault(
                                   i => i.Id.Equals(pi.SubscriptionId)).Title,
                               ProductTitle = db.Products.FirstOrDefault(
                                   p => p.Id.Equals(pi.ProductId)).Title
@@ -179,7 +179,7 @@ namespace Memberships.Areas.Admin.Extensions
                 ProductId = subscriptionProduct.ProductId,
                 Subscriptions = addListData ? await db.Subscriptions.ToListAsync() : null,
                 Products = addListData ? await db.Products.ToListAsync() : null,
-                SubscriptionTitle = (await db.Items.FirstOrDefaultAsync(i =>
+                SubscriptionTitle = (await db.Subscriptions.FirstOrDefaultAsync(i =>
                 i.Id.Equals(subscriptionProduct.SubscriptionId))).Title,
                 ProductTitle = (await db.Products.FirstOrDefaultAsync(p =>
                 p.Id.Equals(subscriptionProduct.ProductId))).Title
