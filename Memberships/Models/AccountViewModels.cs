@@ -66,7 +66,7 @@ namespace Memberships.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Adres e-mail")]
+        [Display(Name = "Email address")]
         public string Email { get; set; }
 
         [Required]
@@ -79,6 +79,10 @@ namespace Memberships.Models
         [Display(Name = "Potwierdź hasło")]
         [Compare("Password", ErrorMessage = "Hasło i jego potwierdzenie są niezgodne.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
     }
 
     public class ResetPasswordViewModel
