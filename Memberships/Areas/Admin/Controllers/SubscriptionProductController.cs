@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using Memberships.Entities;
 using Memberships.Models;
+using Memberships.Areas.Admin.Models;
+using Memberships.Areas.Admin.Extensions;
 
 namespace Memberships.Areas.Admin.Controllers
 {
@@ -19,22 +21,25 @@ namespace Memberships.Areas.Admin.Controllers
         // GET: Admin/SubscriptionProduct
         public async Task<ActionResult> Index()
         {
-            return View(await db.SubscriptionProducts.ToListAsync());
+            //converting into SubscriptionProductsModel
+            return View(await db.SubscriptionProducts.Convert(db));
         }
 
         // GET: Admin/SubscriptionProduct/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int? subscriptionId, int? productId)
         {
-            if (id == null)
+            if (subscriptionId == null || productId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SubscriptionProduct subscriptionProduct = await db.SubscriptionProducts.FindAsync(id);
+            SubscriptionProduct subscriptionProduct =
+                await GetSubscriptionProduct(subscriptionId, productId);
+
             if (subscriptionProduct == null)
             {
                 return HttpNotFound();
             }
-            return View(subscriptionProduct);
+            return View(await subscriptionProduct.Convert(db));
         }
 
         // GET: Admin/SubscriptionProduct/Create
