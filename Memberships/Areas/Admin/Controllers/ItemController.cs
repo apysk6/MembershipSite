@@ -12,6 +12,7 @@ using Memberships.Models;
 
 namespace Memberships.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ItemController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -85,7 +86,7 @@ namespace Memberships.Areas.Admin.Controllers
             item.ItemTypes = await db.ItemTypes.ToListAsync();
             item.Parts = await db.Parts.ToListAsync();
             item.Sections = await db.Sections.ToListAsync();
-            
+
 
             return View(item);
         }
