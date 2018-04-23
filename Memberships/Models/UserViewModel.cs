@@ -9,7 +9,7 @@ namespace Memberships.Models
     public class UserViewModel
     {
         [Display(Name = "User ID")]
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
