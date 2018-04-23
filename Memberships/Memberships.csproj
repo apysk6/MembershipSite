@@ -306,6 +306,7 @@
     <Content Include="Areas\Admin\Views\ProductItem\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ProductItem\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProductItem\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_EditButtonDetailPartial.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
