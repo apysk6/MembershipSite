@@ -32,7 +32,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
-                @Html.Partial("_TableButtonsPartial", new SmallButtonModel { Id = item.Id })
+                @Html.Partial("_TableButtonsPartial", 
+                    new SmallButtonModel { UserId = item.Id })
             </tr>
         }
 
