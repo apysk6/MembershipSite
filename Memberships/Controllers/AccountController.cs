@@ -510,7 +510,7 @@ namespace Memberships.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> Create(RegisterViewModel model)
+        public async Task<ActionResult> Create(UserViewModel model)
         {
             if (ModelState.IsValid)
             {
