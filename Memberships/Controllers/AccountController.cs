@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Memberships.Models;
 using System.Collections.Generic;
 using Memberships.Extensions;
+using System.Net;
 
 namespace Memberships.Controllers
 {
@@ -533,6 +534,32 @@ namespace Memberships.Controllers
             }
 
            
+            return View(model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Edit(string userId)
+        {
+            if (userId == null || userId.Equals(String.Empty))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ApplicationUser user = await UserManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new UserViewModel
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                Id = user.Id,
+                Password = user.PasswordHash
+            };
+
+
             return View(model);
         }
     }
