@@ -558,8 +558,45 @@ namespace Memberships.Controllers
                 Id = user.Id,
                 Password = user.PasswordHash
             };
+            return View(model);
+        }
 
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(UserViewModel model)
+        {
+            try
+            {
+                if (model == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
 
+                if (ModelState.IsValid)
+                {
+                    var user = await UserManager.FindByIdAsync(model.Id);
+                    if (user != null)
+                    {
+                        user.Email = model.Email;
+                        user.UserName = model.Email;
+                        user.FirstName = model.FirstName;
+
+                        if (!user.PasswordHash.Equals(model.Password))
+                            user.PasswordHash = UserManager.PasswordHasher.HashPassword(model.Password);
+
+                        var result = await UserManager.UpdateAsync(user);
+                        if (result.Succeeded)
+                            return RedirectToAction("Index", "Account");
+                        else
+                            AddErrors(result);
+                    }
+                }
+            }
+            catch
+            {
+
+            }
             return View(model);
         }
     }
