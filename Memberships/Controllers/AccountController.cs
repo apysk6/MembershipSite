@@ -665,7 +665,7 @@ namespace Memberships.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> Subscription(string userId)
+        public async Task<ActionResult> Subscriptions(string userId)
         {
             if (userId == null || userId.Equals(String.Empty))
             {
