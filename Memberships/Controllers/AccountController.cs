@@ -733,10 +733,8 @@ namespace Memberships.Controllers
             return RedirectToAction("Subscriptions", "Account", new { userId = model.UserId});
         }
 
-        [HttpPost]
         [Authorize(Roles = "Admin")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RemoveUserSubscriptions(string userId, int subscriptionId)
+        public async Task<ActionResult> RemoveUserSubscription(string userId, int subscriptionId)
         {
             try
             {
