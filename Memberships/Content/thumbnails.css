@@ -2,3 +2,53 @@
     margin: 0px 0px 15px;
     border-bottom: 2px solid #72C02C;
 }
+
+.thumbnail {
+    padding: 5px;
+}
+
+    .thumbnail .tag {
+        padding: 1px 6px;
+        right: -10px;
+        color: white;
+        display: inline-block;
+        position: absolute;
+    }
+
+    .thumbnail .thumbnail-container {
+        position: relative;
+    }
+
+    .thumbnail .text-tag {
+        background-color: #72C02C;
+        bottom: 5px;
+    }
+
+    .thumbnail .content-tag {
+        background-color: #F79A47;
+        top: 5px;
+    }
+
+    .thumbnail .thumbnail-img-container {
+        overflow: hidden;
+    }
+
+    .thumbnail .thumbnail-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .thumbnail a, a:focus, a:hover, a:active {
+        outline: 0px none !important;
+        text-decoration: none;
+    }
+
+    .thumbnail > a:focus, a:hover, a:active {
+        color: #72C02C;
+    }
+
+@media screen and (min-width: 480px) {
+    .thumbnail {
+        max-width: 260px;
+    }
+}
