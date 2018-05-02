@@ -385,6 +385,7 @@
     <Content Include="Views\Account\Subscriptions.cshtml" />
     <Content Include="Views\Shared\_ThumbnailAreaPartial.cshtml" />
     <Content Include="Views\ProductContent\Index.cshtml" />
+    <Content Include="Views\ProductContent\_ProductSectionPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
