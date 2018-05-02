@@ -13,13 +13,21 @@ namespace Memberships.Extensions
         private static async Task<List<int>> GetSubscriptionIdsAsync(
             string userId = null, ApplicationDbContext db = null)
         {
-            if (userId == null) return new List<int>();
-            if (db == null) db = ApplicationDbContext.Create();
+            try
+            {
+                if (userId == null) return new List<int>();
+                if (db == null) db = ApplicationDbContext.Create();
 
-            return await (
-                from us in db.UserSubscriptions
-                where us.UserId.Equals(userId)
-                select us.SubscriptionId).ToListAsync();
+                return await (
+                    from us in db.UserSubscriptions
+                    where us.UserId.Equals(userId)
+                    select us.SubscriptionId).ToListAsync();
+            }
+            catch
+            {
+
+            }
+            return new List<int>();
         }
     }
 }
