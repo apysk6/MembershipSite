@@ -263,6 +263,7 @@
     <Content Include="Content\Logos\membership-icon-45x184.png" />
     <Content Include="Content\navbar.css" />
     <Content Include="Content\ProductContent.css" />
+    <Content Include="Content\RegisterCode.css" />
     <Content Include="Content\thumbnails.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
